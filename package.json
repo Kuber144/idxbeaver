@@ -5,8 +5,10 @@
   "description": "A professional database client for browser storage.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
+    "dev": "npm run dev --prefix landing",
+    "build": "npm run build --prefix landing",
+    "dev:extension": "vite",
+    "build:extension": "tsc --noEmit && vite build",
     "build:watch": "vite build --watch --mode development",
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest run",

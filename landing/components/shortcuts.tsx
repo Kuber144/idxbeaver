@@ -1,25 +1,36 @@
 const shortcuts = [
-  { action: "Open command palette", keys: ["Cmd", "K"] },
-  { action: "Run query", keys: ["Cmd", "Enter"] },
-  { action: "Save query", keys: ["Cmd", "S"] },
-  { action: "Commit cell edit", keys: ["Enter"] },
-  { action: "Cancel cell edit", keys: ["Esc"] },
+  { action: "Command palette", keys: ["⌘", "K"] },
+  { action: "Run query", keys: ["⌘", "↵"] },
+  { action: "Save query", keys: ["⌘", "S"] },
+  { action: "Commit edit", keys: ["↵"] },
+  { action: "Cancel", keys: ["Esc"] },
 ]
 
 export function Shortcuts() {
   return (
-    <section className="border-t border-border py-20 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <div className="order-2 lg:order-1">
-            <div className="overflow-hidden rounded-xl border border-border">
+    <section className="border-t border-border py-24 md:py-36">
+      <div className="mx-auto max-w-5xl px-6">
+        <div className="grid items-start gap-16 lg:grid-cols-2">
+          <div className="lg:order-2">
+            <p className="text-sm font-medium text-amber-600">Workflow</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight md:text-3xl">
+              Keyboard-first
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              Navigate stores, run queries, and edit cells without touching the mouse.
+              The command palette puts every action a keystroke away.
+            </p>
+          </div>
+
+          <div className="lg:order-1">
+            <div className="overflow-hidden rounded-lg border border-border">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-border bg-muted">
-                    <th className="px-4 py-3 text-left text-sm font-medium text-muted-foreground">
+                  <tr className="border-b border-border bg-muted/30">
+                    <th className="px-4 py-2.5 text-left text-xs font-medium text-muted-foreground">
                       Action
                     </th>
-                    <th className="px-4 py-3 text-right text-sm font-medium text-muted-foreground">
+                    <th className="px-4 py-2.5 text-right text-xs font-medium text-muted-foreground">
                       Shortcut
                     </th>
                   </tr>
@@ -28,15 +39,15 @@ export function Shortcuts() {
                   {shortcuts.map((shortcut, i) => (
                     <tr
                       key={shortcut.action}
-                      className={i % 2 === 0 ? "bg-muted/30" : "bg-transparent"}
+                      className={i !== shortcuts.length - 1 ? "border-b border-border" : ""}
                     >
-                      <td className="px-4 py-3 text-sm">{shortcut.action}</td>
-                      <td className="px-4 py-3 text-right">
+                      <td className="px-4 py-2.5 text-sm">{shortcut.action}</td>
+                      <td className="px-4 py-2.5 text-right">
                         <div className="inline-flex gap-1">
-                          {shortcut.keys.map((key) => (
+                          {shortcut.keys.map((key, j) => (
                             <kbd
-                              key={key}
-                              className="inline-flex h-6 min-w-[24px] items-center justify-center rounded border border-border bg-muted px-1.5 font-mono text-xs"
+                              key={j}
+                              className="inline-flex h-6 min-w-6 items-center justify-center rounded border border-border bg-muted px-1.5 font-mono text-xs text-muted-foreground"
                             >
                               {key}
                             </kbd>
@@ -48,16 +59,6 @@ export function Shortcuts() {
                 </tbody>
               </table>
             </div>
-          </div>
-
-          <div className="order-1 lg:order-2">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-              Keyboard-first workflow
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Navigate stores, run queries, and edit cells without touching the mouse. The command
-              palette puts every action a keystroke away.
-            </p>
           </div>
         </div>
       </div>
